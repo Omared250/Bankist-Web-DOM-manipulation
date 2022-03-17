@@ -1,12 +1,15 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const btnLinks = document.querySelectorAll('.nav__link');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -31,12 +34,11 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// adding smooth scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
+///////////////////////////////////////
+// Button Scrolling
 
 btnScrollTo.addEventListener('click', function(e) {
-  const s1coords = section1.getBoundingClientRect();
+  // const s1coords = section1.getBoundingClientRect();
   
   // Scrolling
   // window.scrollTo({
@@ -45,4 +47,13 @@ btnScrollTo.addEventListener('click', function(e) {
   //   behavior : 'smooth',
   // });
   section1.scrollIntoView({ behavior: 'smooth'});
+})
+
+///////////////////////////////////////////////
+// Page Navigation
+
+btnLinks.forEach(function(el) {
+  el.addEventListener('click', function(e) {
+    console.log('Link!');
+  })
 })

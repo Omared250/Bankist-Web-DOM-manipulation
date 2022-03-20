@@ -34,26 +34,20 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-///////////////////////////////////////
-// Button Scrolling
-
-btnScrollTo.addEventListener('click', function(e) {
-  // const s1coords = section1.getBoundingClientRect();
-  
-  // Scrolling
-  // window.scrollTo({
-  //   left : s1coords.left + window.pageXOffset,
-  //   top : s1coords.top + window.pageYOffset,
-  //   behavior : 'smooth',
-  // });
-  section1.scrollIntoView({ behavior: 'smooth'});
-})
-
 ///////////////////////////////////////////////
 // Page Navigation
+// Event Delegation
 
-btnLinks.forEach(function(el) {
-  el.addEventListener('click', function(e) {
-    console.log('Link!');
-  })
+//1. Add event listener to common parent element
+//2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function(e){
+  e.preventDefault();
+
+  // Matching strategy
+  if(e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id)
+      .scrollIntoView({ behavior : 'smooth'});
+  }
 })

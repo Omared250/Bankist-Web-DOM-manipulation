@@ -15,7 +15,6 @@ const header = document.querySelector('.header');
 const allSections = document.querySelectorAll('.section');
 const imgTargets = document.querySelectorAll('img[data-src]');
 const slides = document.querySelectorAll('.slide');
-const slider = document.querySelector('.slider');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
 
@@ -171,12 +170,9 @@ imgTargets.forEach(img => imgObserver.observe(img));
 let curSlide = 0;
 const maxSLide = slides.length;
 
-slider.style.transform = 'scale(0.4) translateX(-800px)';
-slider.style.overflow = 'visible';
-
 const goToSlide = function(slide) {
   slides.forEach((s, i) => 
-  s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    s.style.transform = `translateX(${100 * (i - slide)}%)`)
 }
 
 goToSlide(0);
@@ -193,9 +189,13 @@ const nextSlide = function() {
 };
 
 const prevSlide = function() {
-  curSlide--
+  if (curSlide === 0) {
+    curSlide = maxSLide - 1;
+  } else {
+    curSlide--
+  }
   goToSlide(curSlide);
 }
 
 btnRight.addEventListener('click', nextSlide)
-btnLeft.addEventListener('click', prevSLide);
+btnLeft.addEventListener('click', prevSlide);
